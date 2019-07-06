@@ -22,9 +22,9 @@ public:
     QString get_save_location();
 private slots:
 
-    void on_pushButtonBrowse_clicked();
+    void on_pushButton_browse_clicked();
 
-//    void on_lineEdit_project_name_editingFinished();
+    void on_lineEdit_project_name_editingFinished();
 
 private:
     Ui::DialogCreateProject *ui;

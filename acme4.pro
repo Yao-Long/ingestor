@@ -28,7 +28,6 @@ SOURCES += \
         acmeinstrument.cpp \
         acmeplugin.cpp \
         dialogcreateproject.cpp \
-        dialogdelplugin.cpp \
         dialognewinstrument.cpp \
         dialognewplugin.cpp \
         main.cpp \
@@ -38,7 +37,6 @@ HEADERS += \
         acmeinstrument.h \
         acmeplugin.h \
         dialogcreateproject.h \
-        dialogdelplugin.h \
         dialognewinstrument.h \
         dialognewplugin.h \
         instrumentcommander.h \
@@ -50,7 +48,6 @@ HEADERS += \
 
 FORMS += \
         dialogcreateproject.ui \
-        dialogdelplugin.ui \
         dialognewinstrument.ui \
         dialognewplugin.ui \
         mainwindow.ui

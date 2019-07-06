@@ -19,7 +19,9 @@ class DialogNewPlugin : public QDialog
 {
     Q_OBJECT
 
-
+//    enum    pluginType
+//    {pluginTypeIngestor, pluginTypeProcessor,
+//    pluginTypeDumper, pluginTypeCommander, pluginTypeDescriptor};
 
 public:
     explicit DialogNewPlugin(QWidget *parent = nullptr);
@@ -28,29 +30,10 @@ public:
     QString getPluginName();
     QString getPluginFileName();
 
-
-    static QString pluginTypeToString(int type){
-        QString ret;
-        switch (type) {
-        case pluginTypeIngestor:
-            return "数据前摄器";
-        case pluginTypeProcessor:
-            return tr("数据处理器");
-        case pluginTypeDumper:
-            return tr("数据导出器");
-        case pluginTypeCommander:
-            return tr("命令适配器");
-        case pluginTypeDescriptor:
-            return tr("仪器描述器");
-        default:
-            return tr("");
-        }
-    }
-
 private slots:
     void on_pushButtonBrowse_clicked();
 
-//    void on_lineEditPluginName_editingFinished();
+    void on_lineEdit_plugin_name_editingFinished();
 
 private:
     Ui::DialogNewPlugin *ui;
