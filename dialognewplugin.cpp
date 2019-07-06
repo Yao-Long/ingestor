@@ -14,6 +14,7 @@ DialogNewPlugin::DialogNewPlugin(QWidget *parent) :
     ui(new Ui::DialogNewPlugin)
 {
     ui->setupUi(this);
+    ui->textEditPluginFileName->setReadOnly(true);
 }
 
 DialogNewPlugin::~DialogNewPlugin()
@@ -24,11 +25,11 @@ DialogNewPlugin::~DialogNewPlugin()
 
 int DialogNewPlugin::getPluginTypeIndex()
 {
-    return ui->comboBox_plugin_type->currentIndex();
+    return ui->comboBoxPluginType->currentIndex();
 }
 QString DialogNewPlugin::getPluginName()
 {
-    return ui->lineEdit_plugin_name->text();
+    return ui->lineEditPluginName->text();
 }
 QString DialogNewPlugin::getPluginFileName()
 {
@@ -48,49 +49,49 @@ void DialogNewPlugin::on_pushButtonBrowse_clicked()
 }
 
 
-void DialogNewPlugin::on_lineEdit_plugin_name_editingFinished()
-{
-    int pluginTypeIndex = getPluginTypeIndex();
-    QString pluginName = getPluginName();
+//void DialogNewPlugin::on_lineEditPluginName_editingFinished()
+//{
+//    int pluginTypeIndex = getPluginTypeIndex();
+//    QString pluginName = getPluginName();
 
-    if(pluginName.isEmpty())
-    {
-        QMessageBox::warning(this, tr("警告"), tr("插件名不能为空"));
-        return;
-    }
+//    if(pluginName.isEmpty())
+//    {
+//        QMessageBox::warning(this, tr("警告"), tr("插件名不能为空"));
+//        return;
+//    }
 
-    QString curPath = QCoreApplication::applicationDirPath(); //获取应用程序的路径
-    QString fileName = curPath;
-    switch (pluginTypeIndex) {
-    case pluginTypeIngestor:
-        fileName += "/ingestor";
-        break;
-    case pluginTypeProcessor:
-        fileName += "/processor";
-        break;
-    case pluginTypeDumper:
-        fileName += "/dumper";
-        break;
-    case pluginTypeCommander:
-        fileName += "/commander";
-        break;
-    case pluginTypeDescriptor:
-        fileName += "/descriptor";
-        break;
-    default:
-        return;
-    }
-    QDir pluginDir(fileName);
-    if(!pluginDir.exists())
-    {
-        qDebug()<<"目录不存在，创建目录";
-        pluginDir.mkdir(fileName);
-    }
-    fileName += "/";
-    fileName += pluginName;
-    QFile aFile(fileName);
-    if(aFile.exists())
-    {
-        QMessageBox::warning(this, tr("警告"), tr("插件名重复"));
-    }
-}
+//    QString curPath = QCoreApplication::applicationDirPath(); //获取应用程序的路径
+//    QString fileName = curPath;
+//    switch (pluginTypeIndex) {
+//    case pluginTypeIngestor:
+//        fileName += "/ingestor";
+//        break;
+//    case pluginTypeProcessor:
+//        fileName += "/processor";
+//        break;
+//    case pluginTypeDumper:
+//        fileName += "/dumper";
+//        break;
+//    case pluginTypeCommander:
+//        fileName += "/commander";
+//        break;
+//    case pluginTypeDescriptor:
+//        fileName += "/descriptor";
+//        break;
+//    default:
+//        return;
+//    }
+//    QDir pluginDir(fileName);
+//    if(!pluginDir.exists())
+//    {
+//        qDebug()<<"目录不存在，创建目录";
+//        pluginDir.mkdir(fileName);
+//    }
+//    fileName += "/";
+//    fileName += pluginName;
+//    QFile aFile(fileName);
+//    if(aFile.exists())
+//    {
+//        QMessageBox::warning(this, tr("警告"), tr("插件名重复"));
+//    }
+//}

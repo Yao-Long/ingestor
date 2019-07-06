@@ -17,6 +17,7 @@
 #include "ui_mainwindow.h"
 #include "acmeplugin.h"
 #include "dialognewinstrument.h"
+#include "dialogdelplugin.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -80,7 +81,8 @@ void MainWindow::initdb()
     if(!query.exec(sql)){
         sql = "create table pluginTab("
                       "name text,"
-                      "type int"
+                      "type int,"
+                      "fileName text"
                       ")";
         if(!query.exec(sql)){
             QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
@@ -148,48 +150,64 @@ void MainWindow::on_actionNewPlugin_triggered()
 
     //保存插件数据
     QString curPath = QCoreApplication::applicationDirPath(); //获取应用程序的路径
-    QString fileName = curPath;
-    switch (pluginTypeIndex) {
-    case pluginTypeIngestor:
-        fileName += "/ingestor";
-        break;
-    case pluginTypeProcessor:
-        fileName += "/processor";
-        break;
-    case pluginTypeDumper:
-        fileName += "/dumper";
-        break;
-    case pluginTypeCommander:
-        fileName += "/commander";
-        break;
-    case pluginTypeDescriptor:
-        fileName += "/descriptor";
-        break;
-    default:
-        return;
-    }
-    QDir pluginDir(fileName);
-    if(!pluginDir.exists())
-    {
-        qDebug()<<"目录不存在，创建目录";
-        pluginDir.mkdir(fileName);
-    }
+//    QString fileName = curPath;
+//    switch (pluginTypeIndex) {
+//    case pluginTypeIngestor:
+//        fileName += "/ingestor";
+//        break;
+//    case pluginTypeProcessor:
+//        fileName += "/processor";
+//        break;
+//    case pluginTypeDumper:
+//        fileName += "/dumper";
+//        break;
+//    case pluginTypeCommander:
+//        fileName += "/commander";
+//        break;
+//    case pluginTypeDescriptor:
+//        fileName += "/descriptor";
+//        break;
+//    default:
+//        return;
+//    }
+//    QDir pluginDir(fileName);
+//    if(!pluginDir.exists())
+//    {
+//        qDebug()<<"目录不存在，创建目录";
+//        pluginDir.mkdir(fileName);
+//    }
 
     //拷贝插件文件到当前目录
-    QFileInfo info = QFileInfo(pluginFileName);
-    QString shortName = info.fileName();
-    qDebug()<<pluginFileName;
-    qDebug()<<curPath + "/" + shortName;
-    QFile::copy(pluginFileName, curPath + "/" + shortName);
+//    QFileInfo info = QFileInfo(pluginFileName);
+//    QString shortName = info.fileName();
+//    qDebug()<<pluginFileName;
+//    qDebug()<<curPath + "/" + shortName;
+    QString newPluginFileName = curPath + "/" + QFileInfo(pluginFileName).fileName();
+    QFile::copy(pluginFileName, newPluginFileName);
 
     QSqlQuery query;
-    QString sql = "insert into pluginTab values(?, ?)";
+    QString sql = "insert into pluginTab values(?, ?, ?)";
     query.prepare(sql);
     query.addBindValue(pluginName);
     query.addBindValue(pluginTypeIndex);
+    query.addBindValue(newPluginFileName);
     if(!query.exec()){
         qDebug()<<sql<<query.lastError().text();
     }
+
+
+    //    sql = "select * from pluginTab";
+    //    if(!query.exec(sql)){
+    //        qDebug()<<sql<<query.lastError().text();
+    //        return;
+    //    }
+    //    while(query.next()){
+    //        if(query.isValid()){
+    //            QString name = query.value(0).toString();
+    //            int type = query.value(1).toInt();
+    //            qDebug()<<"name="<<name<<"type="<<type;
+    //        }
+    //    }
 
 }
 
@@ -598,5 +616,9 @@ void MainWindow::on_actionNewInstrument_triggered()
 
 void MainWindow::on_actionDelPlugin_triggered()
 {
-
+    DialogDelPlugin *d = new DialogDelPlugin(this);
+    Qt::WindowFlags flags = d->windowFlags();
+    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
+    d->exec();
+    delete d;
 }

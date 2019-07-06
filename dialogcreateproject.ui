@@ -26,7 +26,7 @@
     <string>井筒名：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_well_name">
+  <widget class="QLineEdit" name="lineEditWellName">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -36,7 +36,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_task_name">
+  <widget class="QLineEdit" name="lineEditTaskName">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -49,7 +49,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_task_content">
+  <widget class="QLineEdit" name="lineEditTaskContent">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -62,20 +62,20 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_browse">
+  <widget class="QPushButton" name="pushButtonBrowse">
    <property name="geometry">
     <rect>
-     <x>470</x>
-     <y>440</y>
-     <width>75</width>
-     <height>23</height>
+     <x>460</x>
+     <y>430</y>
+     <width>91</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>浏览</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_project_name">
+  <widget class="QLineEdit" name="lineEditProjectName">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -111,7 +111,7 @@
     <string>作业项目：</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_task_type">
+  <widget class="QLineEdit" name="lineEditTaskType">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -163,27 +163,11 @@
     <string>任务单号：</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_save_location">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>440</y>
-     <width>301</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="editable">
-    <bool>true</bool>
-   </property>
-   <property name="currentText">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButtonOK">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>520</y>
+     <x>630</x>
+     <y>530</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -195,8 +179,8 @@
   <widget class="QPushButton" name="pushButtonCancel">
    <property name="geometry">
     <rect>
-     <x>710</x>
-     <y>520</y>
+     <x>830</x>
+     <y>530</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -205,15 +189,30 @@
     <string>取消</string>
    </property>
   </widget>
+  <widget class="QTextEdit" name="textEditSaveLocation">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>430</y>
+     <width>301</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_project_name</tabstop>
-  <tabstop>lineEdit_well_name</tabstop>
-  <tabstop>lineEdit_task_name</tabstop>
-  <tabstop>lineEdit_task_type</tabstop>
-  <tabstop>lineEdit_task_content</tabstop>
-  <tabstop>comboBox_save_location</tabstop>
-  <tabstop>pushButton_browse</tabstop>
+  <tabstop>lineEditProjectName</tabstop>
+  <tabstop>lineEditWellName</tabstop>
+  <tabstop>lineEditTaskName</tabstop>
+  <tabstop>lineEditTaskType</tabstop>
+  <tabstop>lineEditTaskContent</tabstop>
+  <tabstop>pushButtonBrowse</tabstop>
+  <tabstop>pushButtonOK</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>textEditSaveLocation</tabstop>
  </tabstops>
  <resources/>
  <connections>
