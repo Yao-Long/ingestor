@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ACME4</string>
+   <string>主控系统</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -66,7 +66,6 @@
     </property>
     <addaction name="actionNewProject"/>
     <addaction name="actionOpenProject"/>
-    <addaction name="action_3"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -79,8 +78,8 @@
      <addaction name="actionNewPlugin"/>
      <addaction name="actionDelPlugin"/>
     </widget>
-    <addaction name="action_4"/>
-    <addaction name="action_5"/>
+    <addaction name="actionNetworkSet"/>
+    <addaction name="actionLanguageSet"/>
     <addaction name="menu_3"/>
    </widget>
    <addaction name="menu"/>
@@ -105,17 +104,12 @@
     <string>新建工程</string>
    </property>
   </action>
-  <action name="action_3">
-   <property name="text">
-    <string>关闭工程</string>
-   </property>
-  </action>
-  <action name="action_4">
+  <action name="actionNetworkSet">
    <property name="text">
     <string>网络设置</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="actionLanguageSet">
    <property name="text">
     <string>语言设置</string>
    </property>

@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QSqlDataBase>
 #include <QSqlTableModel>
+#include <QTcpSocket>
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void initdb();
+    void initNetwork();
 private slots:
 
     void on_treeWidgetProject_customContextMenuRequested(const QPoint &pos);
@@ -61,6 +63,15 @@ private slots:
 
     void on_actionDelPlugin_triggered();
 
+    void on_actionNetworkSet_triggered();
+
+
+
+    void onConnectFrontServer();
+    void onDisConnectFrontServer();
+    void onSocketConnectFrontServerStateChange(QAbstractSocket::SocketState socketState);
+    void onSocketConnectFrontServerReadyRead();
+
 private:
     Ui::MainWindow *ui;
 //    QList<AcmeProject> project;
@@ -68,6 +79,11 @@ private:
     QSqlDatabase db;
 //    QSqlTableModel *tabModel;  //数据模型
 //    QSqlQueryModel *queryModel;
+
+    QTcpSocket *clientFront;
+    QTcpSocket *clientDataCenter;
+    QTcpSocket *serverAgent;
+    QTcpSocket *clientA12;
 };
 
 #endif // MAINWINDOW_H

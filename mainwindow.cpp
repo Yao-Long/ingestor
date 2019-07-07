@@ -18,6 +18,7 @@
 #include "acmeplugin.h"
 #include "dialognewinstrument.h"
 #include "dialogdelplugin.h"
+#include "dialognetworkset.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -91,9 +92,69 @@ void MainWindow::initdb()
     }
 }
 
+
+
+void MainWindow::initNetwork()
+{
+//    clientFront = new QTcpSocket(this);
+//    connect(clientFront, SIGNAL(connected()), this, SLOT(onConnectFrontServer()));
+//    connect(clientFront, SIGNAL(disconnected()), this, SLOT(onDisConnectFrontServer()));
+//    connect(clientFront,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//            this,SLOT(onSocketConnectFrontServerStateChange(QAbstractSocket::SocketState)));
+//    connect(clientFront,SIGNAL(readyRead()),
+//            this,SLOT(onSocketConnectFrontServerReadyRead()));
+
+//    clientDataCenter = new QTcpSocket(this);
+//    connect(clientDataCenter, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
+//    connect(clientDataCenter, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
+//    connect(clientDataCenter,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//    connect(clientDataCenter,SIGNAL(readyRead()),
+//            this,SLOT(onDataCenterReadyRead()));
+
+//    serverAgent = new QTcpSocket(this);
+//    connect(serverAgent, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
+//    connect(serverAgent, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
+//    connect(serverAgent,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//    connect(serverAgent,SIGNAL(readyRead()),
+//            this,SLOT(onDataCenterReadyRead()));
+
+//    clientA12 = new QTcpSocket(this);
+//    connect(clientA12, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
+//    connect(clientA12, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
+//    connect(clientA12,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//    connect(clientA12,SIGNAL(readyRead()),
+//            this,SLOT(onDataCenterReadyRead()));
+}
+
+
+
+
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    if(db.isOpen()){
+        db.commit();
+        db.close();
+    }
+
+    if(clientFront->isValid()){
+        delete clientFront;
+    }
+
+    if(clientDataCenter->isValid()){
+        delete clientDataCenter;
+    }
+    if(serverAgent->isValid()){
+        delete serverAgent;
+    }
+
+    if(clientA12->isValid()){
+        delete clientA12;
+    }
 }
 
 
@@ -617,6 +678,15 @@ void MainWindow::on_actionNewInstrument_triggered()
 void MainWindow::on_actionDelPlugin_triggered()
 {
     DialogDelPlugin *d = new DialogDelPlugin(this);
+    Qt::WindowFlags flags = d->windowFlags();
+    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
+    d->exec();
+    delete d;
+}
+
+void MainWindow::on_actionNetworkSet_triggered()
+{
+    DialogNetworkSet *d = new DialogNetworkSet(this);
     Qt::WindowFlags flags = d->windowFlags();
     d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
     d->exec();

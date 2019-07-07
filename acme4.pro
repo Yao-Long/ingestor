@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,16 +29,19 @@ SOURCES += \
         acmeplugin.cpp \
         dialogcreateproject.cpp \
         dialogdelplugin.cpp \
+        dialognetworkset.cpp \
         dialognewinstrument.cpp \
         dialognewplugin.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        network.cpp
 
 HEADERS += \
         acmeinstrument.h \
         acmeplugin.h \
         dialogcreateproject.h \
         dialogdelplugin.h \
+        dialognetworkset.h \
         dialognewinstrument.h \
         dialognewplugin.h \
         instrumentcommander.h \
@@ -51,6 +54,7 @@ HEADERS += \
 FORMS += \
         dialogcreateproject.ui \
         dialogdelplugin.ui \
+        dialognetworkset.ui \
         dialognewinstrument.ui \
         dialognewplugin.ui \
         mainwindow.ui
