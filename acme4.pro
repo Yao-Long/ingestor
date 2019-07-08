@@ -34,7 +34,7 @@ SOURCES += \
         dialognewplugin.cpp \
         main.cpp \
         mainwindow.cpp \
-        network.cpp
+        networkdata.cpp
 
 HEADERS += \
         acmeinstrument.h \
@@ -49,7 +49,8 @@ HEADERS += \
         instrumentdumper.h \
         instrumentingestor.h \
         instrumentprocessor.h \
-        mainwindow.h
+        mainwindow.h \
+        networkdata.h
 
 FORMS += \
         dialogcreateproject.ui \

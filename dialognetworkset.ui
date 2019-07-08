@@ -77,9 +77,9 @@
    <widget class="QPushButton" name="pushButtonConnectFrontServer">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>630</x>
       <y>30</y>
-      <width>111</width>
+      <width>141</width>
       <height>41</height>
      </rect>
     </property>
@@ -113,16 +113,6 @@
      <string>地址：</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEditLocalAgentReceiverIP">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>30</y>
-      <width>291</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
@@ -149,14 +139,27 @@
    <widget class="QPushButton" name="pushButtonStartLocalAgentReceiver">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>630</x>
       <y>30</y>
-      <width>111</width>
+      <width>141</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>启动本地代理服务</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBoxLocalAgent">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>30</y>
+      <width>291</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="editable">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -221,9 +224,9 @@
    <widget class="QPushButton" name="pushButtonConnectDataCenter">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>630</x>
       <y>30</y>
-      <width>111</width>
+      <width>141</width>
       <height>41</height>
      </rect>
     </property>
@@ -316,9 +319,9 @@
    <widget class="QPushButton" name="pushButtonConnectA12">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>630</x>
       <y>150</y>
-      <width>111</width>
+      <width>141</width>
       <height>41</height>
      </rect>
     </property>

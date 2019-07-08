@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     initdb();
+    initNetwork();
 }
 
 void MainWindow::initdb()
@@ -90,21 +91,41 @@ void MainWindow::initdb()
             return;
         }
     }
+
+    sql = "select * from networkTab";
+    if(!query.exec(sql)){
+        sql = "create table networkTab("
+                      "frontIp text,"
+                      "frontPort int,"
+                      "dataCenterIp text,"
+                      "dataCenterPort int,"
+                      "localAgentIp text,"
+                      "localAgentPort int,"
+                      "a12Ip text,"
+                      "a12TeamName text"
+                      ")";
+        if(!query.exec(sql)){
+            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            return;
+        }
+    }
 }
 
 
 
 void MainWindow::initNetwork()
 {
-//    clientFront = new QTcpSocket(this);
+    clientFront = new QTcpSocket(this);
 //    connect(clientFront, SIGNAL(connected()), this, SLOT(onConnectFrontServer()));
 //    connect(clientFront, SIGNAL(disconnected()), this, SLOT(onDisConnectFrontServer()));
 //    connect(clientFront,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onSocketConnectFrontServerStateChange(QAbstractSocket::SocketState)));
+//            this,SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
+//    connect(this,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//            this->dialogNetworkSet,SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
 //    connect(clientFront,SIGNAL(readyRead()),
-//            this,SLOT(onSocketConnectFrontServerReadyRead()));
+//            this,SLOT(onFrontServerReadyRead()));
 
-//    clientDataCenter = new QTcpSocket(this);
+    clientDataCenter = new QTcpSocket(this);
 //    connect(clientDataCenter, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
 //    connect(clientDataCenter, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
 //    connect(clientDataCenter,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
@@ -112,21 +133,26 @@ void MainWindow::initNetwork()
 //    connect(clientDataCenter,SIGNAL(readyRead()),
 //            this,SLOT(onDataCenterReadyRead()));
 
-//    serverAgent = new QTcpSocket(this);
+    serverAgent = new QTcpServer(this);
 //    connect(serverAgent, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
 //    connect(serverAgent, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
 //    connect(serverAgent,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//            this,SLOT(onServerAgentStateChange(QAbstractSocket::SocketState)));
 //    connect(serverAgent,SIGNAL(readyRead()),
-//            this,SLOT(onDataCenterReadyRead()));
+//            this,SLOT(onServerAgentReadyRead()));
 
-//    clientA12 = new QTcpSocket(this);
+    clientA12 = new QTcpSocket(this);
 //    connect(clientA12, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
 //    connect(clientA12, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
 //    connect(clientA12,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//            this,SLOT(onA12StateChange(QAbstractSocket::SocketState)));
 //    connect(clientA12,SIGNAL(readyRead()),
-//            this,SLOT(onDataCenterReadyRead()));
+//            this,SLOT(onA12ReadyRead()));
+
+//    frontIsConnected = false;
+//    dataCenterIsConnected = false;
+//    localAgentIsStarted = false;
+//    a12Isconnected = false;
 }
 
 
@@ -141,19 +167,23 @@ MainWindow::~MainWindow()
         db.close();
     }
 
-    if(clientFront->isValid()){
+    if(clientFront){
         delete clientFront;
     }
 
-    if(clientDataCenter->isValid()){
+    if(clientDataCenter){
         delete clientDataCenter;
     }
-    if(serverAgent->isValid()){
+    if(serverAgent){
         delete serverAgent;
     }
 
-    if(clientA12->isValid()){
+    if(clientA12){
         delete clientA12;
+    }
+
+    if(dialogNetworkSet){
+        delete dialogNetworkSet;
     }
 }
 
@@ -686,9 +716,60 @@ void MainWindow::on_actionDelPlugin_triggered()
 
 void MainWindow::on_actionNetworkSet_triggered()
 {
-    DialogNetworkSet *d = new DialogNetworkSet(this);
-    Qt::WindowFlags flags = d->windowFlags();
-    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
-    d->exec();
-    delete d;
+    if(this->dialogNetworkSet == nullptr)
+    {
+        NetWorkData networkData;
+        networkData.clientA12 = this->clientA12;
+        networkData.clientFront = this->clientFront;
+        networkData.serverAgent = this->serverAgent;
+        networkData.clientDataCenter = this->clientDataCenter;
+//        networkData.a12Isconnected = this->a12Isconnected;
+//        networkData.frontIsConnected = this->frontIsConnected;
+//        networkData.localAgentIsStarted = this->localAgentIsStarted;
+//        networkData.dataCenterIsConnected = this->dataCenterIsConnected;
+
+
+        DialogNetworkSet *d = new DialogNetworkSet(&networkData, this);
+        Qt::WindowFlags flags = d->windowFlags();
+        d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
+        this->dialogNetworkSet = d;
+//        connect(clientFront, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//                d, SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
+//        connect(clientDataCenter, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//                d, SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
+//        connect(serverAgent, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//                d, SLOT(onLoacalAgentStateChange(QAbstractSocket::SocketState)));
+//        connect(serverAgent,SIGNAL(newConnection()),this,SLOT(onLocalAgentNewConnect()));
+
+//        connect(clientA12, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
+//                d, SLOT(onA12StateChange(QAbstractSocket::SocketState)));
+        d->exec();
+    }else {
+        this->dialogNetworkSet->exec();
+    }
 }
+
+//QTcpSocket *MainWindow::getClientFront() const
+//{
+//    return clientFront;
+//}
+
+//bool MainWindow::getA12Isconnected() const
+//{
+//    return a12Isconnected;
+//}
+
+//bool MainWindow::getLocalAgentIsStarted() const
+//{
+//    return localAgentIsStarted;
+//}
+
+//bool MainWindow::getDataCenterIsConnected() const
+//{
+//    return dataCenterIsConnected;
+//}
+
+//bool MainWindow::getFrontIsConnected() const
+//{
+//    return frontIsConnected;
+//}

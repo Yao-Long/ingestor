@@ -3,9 +3,12 @@
 
 
 
+#include "dialognetworkset.h"
+
 #include <QMainWindow>
 #include <QSqlDataBase>
 #include <QSqlTableModel>
+#include <QTcpServer>
 #include <QTcpSocket>
 
 namespace Ui {
@@ -39,6 +42,25 @@ public:
     ~MainWindow();
     void initdb();
     void initNetwork();
+//    bool getFrontIsConnected() const;
+
+//    bool getDataCenterIsConnected() const;
+
+//    bool getLocalAgentIsStarted() const;
+
+//    bool getA12Isconnected() const;
+
+//    QTcpSocket *getClientFront() const;
+
+//signals:
+//    void signalFrontServerStateChange(QAbstractSocket::SocketState socketState);
+//    void signalDataCenterStateChange(QAbstractSocket::SocketState socketState);
+//    void signalLocalAgentStateChange(QAbstractSocket::SocketState socketState);
+//    void signalA12StateChange(QAbstractSocket::SocketState socketState);
+
+//public slots:
+//    void onFrontServerStatusChanged(bool);
+
 private slots:
 
     void on_treeWidgetProject_customContextMenuRequested(const QPoint &pos);
@@ -67,10 +89,10 @@ private slots:
 
 
 
-    void onConnectFrontServer();
-    void onDisConnectFrontServer();
-    void onSocketConnectFrontServerStateChange(QAbstractSocket::SocketState socketState);
-    void onSocketConnectFrontServerReadyRead();
+//    void onConnectFrontServer();
+//    void onDisConnectFrontServer();
+//    void onFrontServerStateChange(QAbstractSocket::SocketState socketState);
+//    void onSocketConnectFrontServerReadyRead();
 
 private:
     Ui::MainWindow *ui;
@@ -80,10 +102,18 @@ private:
 //    QSqlTableModel *tabModel;  //数据模型
 //    QSqlQueryModel *queryModel;
 
+    DialogNetworkSet *dialogNetworkSet;
+
     QTcpSocket *clientFront;
     QTcpSocket *clientDataCenter;
-    QTcpSocket *serverAgent;
+    QTcpServer *serverAgent;
     QTcpSocket *clientA12;
+
+//    bool frontIsConnected;
+//    bool dataCenterIsConnected;
+//    bool localAgentIsStarted;
+//    bool a12Isconnected;
+
 };
 
 #endif // MAINWINDOW_H
