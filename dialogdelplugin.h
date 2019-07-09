@@ -15,6 +15,8 @@ public:
     explicit DialogDelPlugin(QWidget *parent = nullptr);
     ~DialogDelPlugin();
 
+    void initLanguage();
+
     void initPluginTable();
     void initPluginTableRow(int pluginRow, int pluginType, QString pluginName, QString pluginFileName);
 

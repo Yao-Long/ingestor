@@ -73,3 +73,5 @@ DISTFILES +=
 
 RC_ICONS = th.ico
 
+
+TRANSLATIONS = gLanguage_cn.ts gLanguage_en.ts

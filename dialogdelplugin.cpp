@@ -12,16 +12,24 @@ DialogDelPlugin::DialogDelPlugin(QWidget *parent) :
     ui(new Ui::DialogDelPlugin)
 {
     ui->setupUi(this);
-
+    initLanguage();
     initPluginTable();
-
-
 }
 
 DialogDelPlugin::~DialogDelPlugin()
 {
     ui->tableWidget->clear();
     delete ui;
+}
+
+
+extern QTranslator *trans;
+
+
+void DialogDelPlugin::initLanguage()
+{
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
 }
 
 
@@ -64,7 +72,7 @@ void DialogDelPlugin::initPluginTable()
     //设置表头
     QTableWidgetItem *headerItem;
     QStringList headerText;
-    headerText<<"插件名"<<"插件类型"<<"插件文件路径"<<"是否删除";
+    headerText<<tr("插件名")<<tr("插件类型")<<tr("插件文件路径")<<tr("是否删除");
 //    ui->tableWidget->setHorizontalHeaderLabels(headerText);
     int columnCount = headerText.count();
     ui->tableWidget->setColumnCount(columnCount);//列数设置为与 headerText的行数相等
@@ -120,10 +128,10 @@ void DialogDelPlugin::delPluginFromDB(QString pluginName){
 //删除系统中的插件文件
 void DialogDelPlugin::delPluginFromSystem(QString pluginName){
     QSqlQuery query;
-    QString sql = "select * from pluginTab while name = ?";
+    QString sql = "select * from pluginTab where name = ?";
     query.prepare(sql);
     query.addBindValue(pluginName);
-    if(!query.exec(sql)){
+    if(!query.exec()){
         qDebug()<<sql<<query.lastError().text();
         return;
     }

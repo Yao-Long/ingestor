@@ -24,6 +24,9 @@ class DialogNewPlugin : public QDialog
 public:
     explicit DialogNewPlugin(QWidget *parent = nullptr);
     ~DialogNewPlugin();
+
+    void initLanguage();
+
     int getPluginTypeIndex();
     QString getPluginName();
     QString getPluginFileName();
@@ -51,6 +54,8 @@ private slots:
     void on_pushButtonBrowse_clicked();
 
 //    void on_lineEditPluginName_editingFinished();
+
+    void on_pushButtonAdd_clicked();
 
 private:
     Ui::DialogNewPlugin *ui;

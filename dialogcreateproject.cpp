@@ -1,5 +1,6 @@
 #include "dialogcreateproject.h"
 #include "ui_dialogcreateproject.h"
+#include "mainwindow.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -10,12 +11,24 @@ DialogCreateProject::DialogCreateProject(QWidget *parent) :
     ui(new Ui::DialogCreateProject)
 {
     ui->setupUi(this);
+    initLanguage();
 }
 
 DialogCreateProject::~DialogCreateProject()
 {
     delete ui;
 }
+
+
+extern QTranslator *trans;
+
+
+void DialogCreateProject::initLanguage()
+{
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
+}
+
 
 
 QString DialogCreateProject::get_project_name()
@@ -64,11 +77,32 @@ void DialogCreateProject::on_pushButtonBrowse_clicked()
     }
 }
 
-//void DialogCreateProject::on_lineEdit_project_name_editingFinished()
-//{
-//    QString projectName = get_project_name();
-//    if(projectName.isEmpty()){
-//        QMessageBox::warning(this, tr("警告"), tr("工程名不能为空"));
-//        return;
-//    }
-//}
+void DialogCreateProject::on_pushButtonOK_clicked()
+{
+//    qDebug()<<tr("检查所有输入合法性");
+    if(ui->lineEditProjectName->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("工程名不能为空！"));
+        return;
+    }
+    if(ui->lineEditWellName->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("井筒名不能为空！"));
+        return;
+    }
+    if(ui->lineEditTaskName->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("任务单号不能为空！"));
+        return;
+    }
+    if(ui->lineEditTaskType->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("任务类型不能为空！"));
+        return;
+    }
+    if(ui->lineEditTaskContent->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("作业项目不能为空！"));
+        return;
+    }
+    if(ui->textEditSaveLocation->toPlainText().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("项目保存位置不能为空！"));
+        return;
+    }
+    this->accept();
+}

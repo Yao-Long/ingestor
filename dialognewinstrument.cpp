@@ -5,11 +5,14 @@
 
 #include "dialognewplugin.h"
 
+#include <QMessageBox>
+
 DialogNewInstrument::DialogNewInstrument(QList<AcmePlugin> plugins, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogNewInstrument)
 {
     ui->setupUi(this);
+    initLanguage();
     int size = plugins.size();
     for(int i = 0; i < size; i++){
         switch(plugins[i].getType()){
@@ -44,6 +47,17 @@ DialogNewInstrument::~DialogNewInstrument()
 }
 
 
+
+extern QTranslator *trans;
+
+
+void DialogNewInstrument::initLanguage()
+{
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
+}
+
+
 QString DialogNewInstrument::getIngestorName(){
     return ui->comboBoxIngestor->currentText();
 }
@@ -68,3 +82,12 @@ QString DialogNewInstrument::getInstrumentName(){
     return ui->lineEditInstrumentName->text();
 }
 
+
+void DialogNewInstrument::on_pushButtonOK_clicked()
+{
+    if(ui->lineEditInstrumentName->text().isEmpty()){
+        QMessageBox::information(this, tr("提示消息"), tr("仪器名不能为空！"));
+        return;
+    }
+    this->accept();
+}

@@ -20,11 +20,19 @@ public:
     QString get_task_type();
     QString get_task_content();
     QString get_save_location();
+
+
+    void initLanguage();
+
 private slots:
 
     void on_pushButtonBrowse_clicked();
 
+//    void closeEvent(QCloseEvent *event);
+
 //    void on_lineEdit_project_name_editingFinished();
+
+    void on_pushButtonOK_clicked();
 
 private:
     Ui::DialogCreateProject *ui;

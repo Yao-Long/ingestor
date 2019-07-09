@@ -17,12 +17,17 @@ public:
     explicit DialogNewInstrument(QList<AcmePlugin> plugins, QWidget *parent = nullptr);
     ~DialogNewInstrument();
 
+    void initLanguage();
+
     QString getIngestorName();
     QString getDumperName();
     QString getProcessorName();
     QString getCommanderName();
     QString getDescriptorName();
     QString getInstrumentName();
+
+private slots:
+    void on_pushButtonOK_clicked();
 
 private:
     Ui::DialogNewInstrument *ui;

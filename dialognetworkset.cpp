@@ -21,6 +21,8 @@ DialogNetworkSet::DialogNetworkSet(NetWorkData *d, QWidget *parent) :
     ui(new Ui::DialogNetworkSet)
 {
     ui->setupUi(this);
+    initLanguage();
+
     netWorkData = *d;
 
     connect(d->clientFront, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
@@ -126,6 +128,18 @@ DialogNetworkSet::~DialogNetworkSet()
 {
     delete ui;
 }
+
+
+
+extern QTranslator *trans;
+
+
+void DialogNetworkSet::initLanguage()
+{
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
+}
+
 
 bool DialogNetworkSet::ipAndPortIsValid(QString ip, QString port)
 {
@@ -357,8 +371,8 @@ void DialogNetworkSet::onDataCenterStateChange(QAbstractSocket::SocketState sock
 }
 
 
-void DialogNetworkSet::onLocalAgentStateChange(QAbstractSocket::SocketState socketState)
-{
+//void DialogNetworkSet::onLocalAgentStateChange(QAbstractSocket::SocketState socketState)
+//{
 //    switch(socketState)
 //    {
 //    case QAbstractSocket::UnconnectedState:
@@ -390,7 +404,7 @@ void DialogNetworkSet::onLocalAgentStateChange(QAbstractSocket::SocketState sock
 //        ui->pushButtonConnectFrontServer->setDisabled(false);
 //        break;
 //    }
-}
+//}
 
 
 void DialogNetworkSet::onA12StateChange(QAbstractSocket::SocketState socketState)

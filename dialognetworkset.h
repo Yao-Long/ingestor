@@ -20,6 +20,8 @@ public:
     explicit DialogNetworkSet(NetWorkData *d, QWidget *parent = nullptr);
     ~DialogNetworkSet();
 
+    void initLanguage();
+
     bool ipAndPortIsValid(QString ip, QString port);
 //    Ui::DialogNetworkSet *getUi() const;
 //signals:
@@ -51,7 +53,7 @@ public slots:
 //    void onDisConnectFrontServer();
     void onFrontServerStateChange(QAbstractSocket::SocketState socketState);
     void onDataCenterStateChange(QAbstractSocket::SocketState socketState);
-    void onLocalAgentStateChange(QAbstractSocket::SocketState socketState);
+//    void onLocalAgentStateChange(QAbstractSocket::SocketState socketState);
     void onLocalAgentNewConnect();
     void onA12StateChange(QAbstractSocket::SocketState socketState);
 

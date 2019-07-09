@@ -21,6 +21,11 @@
 #include "dialognetworkset.h"
 
 
+
+extern languageType langType;
+extern QTranslator *trans;
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,6 +33,36 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     initdb();
     initNetwork();
+    initLanguage();
+}
+
+
+void MainWindow::initLanguage()
+{
+    QSqlQuery query;
+    QString sql = "select * from languageTab";
+    if(!query.exec(sql)){
+        QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+        return;
+    }
+    int type = -1;
+    while (query.next()) {
+        if(query.isValid()){
+            type = query.value(0).toInt();
+            break;
+        }
+    }
+    trans = new QTranslator;
+    QString curPath = QCoreApplication::applicationDirPath();
+    if(type == languageTypeEnglish){
+        trans->load(curPath + "/gLanguage_en.qm");
+        langType = languageTypeEnglish;
+    }else{
+        trans->load(curPath + "/gLanguage_cn.qm");
+        langType = languageTypeChinese;
+    }
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
 }
 
 void MainWindow::initdb()
@@ -105,6 +140,25 @@ void MainWindow::initdb()
                       "a12TeamName text"
                       ")";
         if(!query.exec(sql)){
+            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            return;
+        }
+    }
+
+    sql = "select * from languageTab";
+    if(!query.exec(sql)){
+        sql = "create table languageTab("
+                      "language int"
+                      ")";
+        if(!query.exec(sql)){
+            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            return;
+        }
+
+        sql = "insert into languageTab values(?)";
+        query.prepare(sql);
+        query.addBindValue(languageTypeChinese);
+        if(!query.exec()){
             QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
             return;
         }
@@ -773,3 +827,53 @@ void MainWindow::on_actionNetworkSet_triggered()
 //{
 //    return frontIsConnected;
 //}
+
+
+void MainWindow::on_actionSetLanguageCN_triggered()
+{
+    if(langType == languageTypeChinese){
+        return;
+    }
+    qApp->removeTranslator(trans);
+    delete trans;
+    trans = new QTranslator;
+    QString curPath = QCoreApplication::applicationDirPath();
+    trans->load(curPath + "/gLanguage_cn.qm");
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
+    langType = languageTypeChinese;
+
+    QSqlQuery query;
+    QString sql = "update languageTab set language = ?";
+    query.prepare(sql);
+    query.addBindValue(langType);
+    if(!query.exec()){
+        qDebug()<<sql<<query.lastError().text();
+        return;
+    }
+
+}
+
+void MainWindow::on_actionSetLanguageEN_triggered()
+{
+    if(langType == languageTypeEnglish){
+        return;
+    }
+    qApp->removeTranslator(trans);
+    delete trans;
+    trans = new QTranslator;
+    QString curPath = QCoreApplication::applicationDirPath();
+    trans->load(curPath + "/gLanguage_en.qm");
+    qApp->installTranslator(trans);
+    ui->retranslateUi(this);
+    langType = languageTypeEnglish;
+
+    QSqlQuery query;
+    QString sql = "update languageTab set language = ?";
+    query.prepare(sql);
+    query.addBindValue(langType);
+    if(!query.exec()){
+        qDebug()<<sql<<query.lastError().text();
+        return;
+    }
+}

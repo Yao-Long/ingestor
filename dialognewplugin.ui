@@ -16,10 +16,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
-     <width>54</width>
-     <height>12</height>
+     <x>40</x>
+     <y>30</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -29,9 +29,9 @@
   <widget class="QComboBox" name="comboBoxPluginType">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>160</x>
      <y>30</y>
-     <width>171</width>
+     <width>191</width>
      <height>31</height>
     </rect>
    </property>
@@ -64,10 +64,10 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>140</y>
-     <width>54</width>
-     <height>12</height>
+     <x>40</x>
+     <y>130</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -77,9 +77,9 @@
   <widget class="QLineEdit" name="lineEditPluginName">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>160</x>
      <y>130</y>
-     <width>171</width>
+     <width>191</width>
      <height>31</height>
     </rect>
    </property>
@@ -87,10 +87,10 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>250</y>
-     <width>54</width>
-     <height>12</height>
+     <x>40</x>
+     <y>240</y>
+     <width>111</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
@@ -100,8 +100,8 @@
   <widget class="QTextEdit" name="textEditPluginFileName">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>240</y>
+     <x>160</x>
+     <y>230</y>
      <width>411</width>
      <height>91</height>
     </rect>
@@ -142,9 +142,9 @@
   <widget class="QPushButton" name="pushButtonBrowse">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>240</y>
-     <width>71</width>
+     <x>620</x>
+     <y>230</y>
+     <width>91</width>
      <height>41</height>
     </rect>
    </property>
@@ -155,22 +155,6 @@
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>pushButtonAdd</sender>
-   <signal>clicked()</signal>
-   <receiver>DialogNewPlugin</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>370</x>
-     <y>410</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>367</x>
-     <y>240</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>pushButtonCancel</sender>
    <signal>clicked()</signal>

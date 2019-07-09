@@ -10,6 +10,7 @@
 #include <QSqlTableModel>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QTranslator>
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +33,12 @@ enum projectTreeColumn
     instrumentColumn,
 };
 
+enum languageType
+{
+    languageTypeEnglish = 100,
+    languageTypeChinese,
+};
+
 
 class MainWindow : public QMainWindow
 {
@@ -42,6 +49,7 @@ public:
     ~MainWindow();
     void initdb();
     void initNetwork();
+    void initLanguage();
 //    bool getFrontIsConnected() const;
 
 //    bool getDataCenterIsConnected() const;
@@ -94,6 +102,10 @@ private slots:
 //    void onFrontServerStateChange(QAbstractSocket::SocketState socketState);
 //    void onSocketConnectFrontServerReadyRead();
 
+    void on_actionSetLanguageCN_triggered();
+
+    void on_actionSetLanguageEN_triggered();
+
 private:
     Ui::MainWindow *ui;
 //    QList<AcmeProject> project;
@@ -114,6 +126,8 @@ private:
 //    bool localAgentIsStarted;
 //    bool a12Isconnected;
 
+//    languageType langType;
+//    QTranslator *trans;
 };
 
 #endif // MAINWINDOW_H
