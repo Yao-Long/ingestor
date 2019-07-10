@@ -6,35 +6,17 @@
 #include "dialognewplugin.h"
 
 #include <QMessageBox>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QtDebug>
 
-DialogNewInstrument::DialogNewInstrument(QList<AcmePlugin> plugins, QWidget *parent) :
+DialogNewInstrument::DialogNewInstrument(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogNewInstrument)
 {
     ui->setupUi(this);
     initLanguage();
-    int size = plugins.size();
-    for(int i = 0; i < size; i++){
-        switch(plugins[i].getType()){
-        case pluginTypeIngestor:
-            ui->comboBoxIngestor->addItem(plugins[i].getName());
-            break;
-        case pluginTypeProcessor:
-            ui->comboBoxProcessor->addItem(plugins[i].getName());
-            break;
-        case pluginTypeDumper:
-            ui->comboBoxDumper->addItem(plugins[i].getName());
-            break;
-        case pluginTypeCommander:
-            ui->comboBoxCommander->addItem(plugins[i].getName());
-            break;
-        case pluginTypeDescriptor:
-            ui->comboBoxDescriptor->addItem(plugins[i].getName());
-            break;
-        default:
-            break;
-        }
-    }
+    initExistInstrument();
 }
 
 
@@ -46,8 +28,6 @@ DialogNewInstrument::~DialogNewInstrument()
     delete ui;
 }
 
-
-
 extern QTranslator *trans;
 
 
@@ -57,26 +37,61 @@ void DialogNewInstrument::initLanguage()
     ui->retranslateUi(this);
 }
 
-
-QString DialogNewInstrument::getIngestorName(){
-    return ui->comboBoxIngestor->currentText();
+void DialogNewInstrument::initExistInstrument(){
+    QSqlQuery query;
+    QString sql = "select * from pluginTab";
+    if(!query.exec(sql)){
+        qDebug()<<sql<<query.lastError().text();
+        return;
+    }
+    while(query.next()){
+        if(query.isValid()){
+            QString name = query.value(0).toString();
+            int type = query.value(1).toInt();
+            switch(type){
+            case pluginTypeIngestor:
+                ui->comboBoxIngestor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                break;
+            case pluginTypeProcessor:
+                ui->comboBoxProcessor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                break;
+            case pluginTypeDumper:
+                ui->comboBoxDumper->addItem(DialogNewPlugin::pluginTypeToString(type));
+                break;
+            case pluginTypeCommander:
+                ui->comboBoxCommander->addItem(DialogNewPlugin::pluginTypeToString(type));
+                break;
+            case pluginTypeDescriptor:
+                ui->comboBoxDescriptor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                break;
+            default:
+                break;
+            }
+        }
+    }
 }
 
-QString DialogNewInstrument::getDumperName(){
-    return ui->comboBoxDumper->currentText();
-}
 
-QString DialogNewInstrument::getProcessorName(){
-    return ui->comboBoxProcessor->currentText();
-}
 
-QString DialogNewInstrument::getCommanderName(){
-    return ui->comboBoxCommander->currentText();
-}
+//QString DialogNewInstrument::getIngestorName(){
+//    return ui->comboBoxIngestor->currentText();
+//}
 
-QString DialogNewInstrument::getDescriptorName(){
-    return ui->comboBoxDescriptor->currentText();
-}
+//QString DialogNewInstrument::getDumperName(){
+//    return ui->comboBoxDumper->currentText();
+//}
+
+//QString DialogNewInstrument::getProcessorName(){
+//    return ui->comboBoxProcessor->currentText();
+//}
+
+//QString DialogNewInstrument::getCommanderName(){
+//    return ui->comboBoxCommander->currentText();
+//}
+
+//QString DialogNewInstrument::getDescriptorName(){
+//    return ui->comboBoxDescriptor->currentText();
+//}
 
 QString DialogNewInstrument::getInstrumentName(){
     return ui->lineEditInstrumentName->text();

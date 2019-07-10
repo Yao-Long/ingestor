@@ -36,7 +36,7 @@ public:
         QString ret;
         switch (type) {
         case pluginTypeIngestor:
-            return "数据前摄器";
+            return tr("数据前摄器");
         case pluginTypeProcessor:
             return tr("数据处理器");
         case pluginTypeDumper:

@@ -37,7 +37,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>291</width>
+      <width>331</width>
       <height>601</height>
      </rect>
     </property>
@@ -66,6 +66,14 @@
     </property>
     <addaction name="actionNewProject"/>
     <addaction name="actionOpenProject"/>
+    <addaction name="actionDelProject"/>
+    <addaction name="actionCloseProject"/>
+    <addaction name="separator"/>
+    <addaction name="actionNewService"/>
+    <addaction name="actionDelService"/>
+    <addaction name="separator"/>
+    <addaction name="actionNewInstrument"/>
+    <addaction name="actionDelInstrument"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">

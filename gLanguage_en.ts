@@ -6,42 +6,42 @@
     <message>
         <location filename="dialogcreateproject.ui" line="14"/>
         <source>新建工程</source>
-        <translation>new project</translation>
+        <translation>New Project</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="26"/>
         <source>井筒名：</source>
-        <translation>well name:</translation>
+        <translation>Well Name:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="75"/>
         <source>浏览</source>
-        <translation>browse</translation>
+        <translation>Browse</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="98"/>
         <source>任务类型：</source>
-        <translation>task type:</translation>
+        <translation>Task Type:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="111"/>
         <source>作业项目：</source>
-        <translation>task contents:</translation>
+        <translation>Task Contents:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="137"/>
         <source>工程保存位置：</source>
-        <translation>project saved location:</translation>
+        <translation>Project Saved Location:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="150"/>
         <source>工程名：</source>
-        <translation>project name:</translation>
+        <translation>Project Name:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="163"/>
         <source>任务单号：</source>
-        <translation>task number:</translation>
+        <translation>Task Number:</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.ui" line="176"/>
@@ -66,37 +66,37 @@
         <location filename="dialogcreateproject.cpp" line="100"/>
         <location filename="dialogcreateproject.cpp" line="104"/>
         <source>提示消息</source>
-        <translation>information</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="84"/>
         <source>工程名不能为空！</source>
-        <translation>project name can not be empty!</translation>
+        <translation>Project Name Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="88"/>
         <source>井筒名不能为空！</source>
-        <translation>well name can not be empty!</translation>
+        <translation>Well Name Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="92"/>
         <source>任务单号不能为空！</source>
-        <translation>task number can not be empty!</translation>
+        <translation>Task Number Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="96"/>
         <source>任务类型不能为空！</source>
-        <translation>task type can not be empty!</translation>
+        <translation>Task Type Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="100"/>
         <source>作业项目不能为空！</source>
-        <translation>task contents can not be empty!</translation>
+        <translation>Task Contents Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialogcreateproject.cpp" line="104"/>
         <source>项目保存位置不能为空！</source>
-        <translation>project save location can not be empty!</translation>
+        <translation>Project Saved Location Can NOT Be Empty!</translation>
     </message>
 </context>
 <context>
@@ -104,43 +104,43 @@
     <message>
         <location filename="dialogdelplugin.ui" line="14"/>
         <source>删除插件</source>
-        <translation>delete plugin</translation>
+        <translation>Delete Plugin</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.ui" line="36"/>
         <source>执行删除</source>
-        <translation>delete</translation>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="60"/>
         <source>否</source>
-        <translation>no</translation>
+        <translation>NO</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="75"/>
         <source>插件名</source>
-        <translation>plugin name</translation>
+        <translation>Plugin Name</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="75"/>
         <source>插件类型</source>
-        <translation>plugin type</translation>
+        <translation>Plugin Type</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="75"/>
         <source>插件文件路径</source>
-        <translation>plugin file</translation>
+        <translation>Plugin File</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="75"/>
         <source>是否删除</source>
-        <translation>delete or not</translation>
+        <translation>Delete Or Not</translation>
     </message>
     <message>
         <location filename="dialogdelplugin.cpp" line="160"/>
         <location filename="dialogdelplugin.cpp" line="181"/>
         <source>是</source>
-        <translation>yes</translation>
+        <translation>YES</translation>
     </message>
 </context>
 <context>
@@ -148,12 +148,12 @@
     <message>
         <location filename="dialognetworkset.ui" line="17"/>
         <source>网络设置</source>
-        <translation>network setting</translation>
+        <translation>Network Setting</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="29"/>
         <source>前端服务器</source>
-        <translation>front server</translation>
+        <translation>Front Server</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="41"/>
@@ -161,63 +161,63 @@
         <location filename="dialognetworkset.ui" line="188"/>
         <location filename="dialognetworkset.ui" line="260"/>
         <source>地址：</source>
-        <translation>ip:</translation>
+        <translation>IP:</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="64"/>
         <location filename="dialognetworkset.ui" line="126"/>
         <location filename="dialognetworkset.ui" line="211"/>
         <source>端口：</source>
-        <translation>port:</translation>
+        <translation>PORT:</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="87"/>
         <location filename="dialognetworkset.cpp" line="160"/>
         <location filename="dialognetworkset.cpp" line="311"/>
         <source>连接前端服务器</source>
-        <translation>connect to front server</translation>
+        <translation>Connect To Front Server</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="101"/>
         <source>本地接收实时数据的代理服务器</source>
-        <translation>local agent server</translation>
+        <translation>Local Agent Server</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="149"/>
         <source>启动本地代理服务</source>
-        <translation>start local agent</translation>
+        <translation>Start Local Agent</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="176"/>
         <source>数据中心</source>
-        <translation>data center</translation>
+        <translation>Data Center</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="234"/>
         <location filename="dialognetworkset.cpp" line="185"/>
         <location filename="dialognetworkset.cpp" line="346"/>
         <source>连接数据中心</source>
-        <translation>connect to data center</translation>
+        <translation>Connect To Data Center</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="248"/>
         <source>A12系统</source>
-        <translation>A12 system</translation>
+        <translation>A12 System</translation>
     </message>
     <message>
         <location filename="dialognetworkset.ui" line="283"/>
         <source>作业队：</source>
-        <translation>team:</translation>
+        <translation>Team:</translation>
     </message>
     <message>
-        <location filename="dialognetworkset.ui" line="316"/>
+        <location filename="dialognetworkset.ui" line="319"/>
         <source>密码：</source>
-        <translation>password:</translation>
+        <translation>Password:</translation>
     </message>
     <message>
-        <location filename="dialognetworkset.ui" line="329"/>
+        <location filename="dialognetworkset.ui" line="332"/>
         <source>连接A12系统</source>
-        <translation>connect to A12</translation>
+        <translation>Connect To A12</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="159"/>
@@ -274,7 +274,7 @@
     <message>
         <location filename="dialognetworkset.cpp" line="208"/>
         <source>启动本地代理服务器</source>
-        <translation>start local agent</translation>
+        <translation>Start Local Agent</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="214"/>
@@ -305,7 +305,7 @@
         <location filename="dialognetworkset.cpp" line="256"/>
         <location filename="dialognetworkset.cpp" line="416"/>
         <source>连接A12服务器</source>
-        <translation>connect to A12</translation>
+        <translation>Connect To A12</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="264"/>
@@ -320,7 +320,7 @@
     <message>
         <location filename="dialognetworkset.cpp" line="306"/>
         <source>socketConnectFrontServer 状态：</source>
-        <translation></translation>
+        <translation>socketConnectFrontServer status：</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="310"/>
@@ -345,7 +345,7 @@
     <message>
         <location filename="dialognetworkset.cpp" line="323"/>
         <source>断开与前端服务器连接</source>
-        <translation>disconnect to front server</translation>
+        <translation>Disconnect To Front Server</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="327"/>
@@ -380,7 +380,7 @@
     <message>
         <location filename="dialognetworkset.cpp" line="358"/>
         <source>断开与数据中心连接</source>
-        <translation>disconnect to data center</translation>
+        <translation>Disconnect To Data Center</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="415"/>
@@ -400,7 +400,7 @@
     <message>
         <location filename="dialognetworkset.cpp" line="428"/>
         <source>断开与A12服务器连接</source>
-        <translation>disconnect to A12</translation>
+        <translation>Disconnect To A12</translation>
     </message>
     <message>
         <location filename="dialognetworkset.cpp" line="460"/>
@@ -413,32 +413,32 @@
     <message>
         <location filename="dialognewinstrument.ui" line="14"/>
         <source>创建仪器</source>
-        <translation>new instrument</translation>
+        <translation>New Instrument</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="39"/>
         <source>数据前摄器：</source>
-        <translation>data ingestor:</translation>
+        <translation>Data Ingestor:</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="52"/>
         <source>数据处理器：</source>
-        <translation>data processor:</translation>
+        <translation>Data Processor:</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="75"/>
         <source>命令适配器：</source>
-        <translation>commander:</translation>
+        <translation>Commander:</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="88"/>
         <source>数据导出器：</source>
-        <translation>data dumper:</translation>
+        <translation>Data Dumper:</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="121"/>
         <source>仪器描述器：</source>
-        <translation>descriptor:</translation>
+        <translation>Descriptor:</translation>
     </message>
     <message>
         <location filename="dialognewinstrument.ui" line="144"/>
@@ -453,17 +453,17 @@
     <message>
         <location filename="dialognewinstrument.ui" line="170"/>
         <source>仪器名字：</source>
-        <translation>instrument name:</translation>
+        <translation>Instrument Name:</translation>
     </message>
     <message>
-        <location filename="dialognewinstrument.cpp" line="89"/>
+        <location filename="dialognewinstrument.cpp" line="104"/>
         <source>提示消息</source>
-        <translation>information</translation>
+        <translation>Information</translation>
     </message>
     <message>
-        <location filename="dialognewinstrument.cpp" line="89"/>
+        <location filename="dialognewinstrument.cpp" line="104"/>
         <source>仪器名不能为空！</source>
-        <translation>instrument name can not be empty!</translation>
+        <translation>Instrument Name Can NOT Be Empty!</translation>
     </message>
 </context>
 <context>
@@ -471,50 +471,51 @@
     <message>
         <location filename="dialognewplugin.ui" line="14"/>
         <source>创建插件</source>
-        <translation>new plugin</translation>
+        <translation>New Plugin</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="26"/>
         <source>插件类型：</source>
-        <translation>plugin type:</translation>
+        <translation>Plugin Type:</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="40"/>
+        <location filename="dialognewplugin.h" line="39"/>
         <source>数据前摄器</source>
-        <translation>data ingestor</translation>
+        <translation>Data Ingestor</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="45"/>
         <location filename="dialognewplugin.h" line="41"/>
         <source>数据处理器</source>
-        <translation>data processor</translation>
+        <translation>Data Processor</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="50"/>
         <location filename="dialognewplugin.h" line="43"/>
         <source>数据导出器</source>
-        <translation>data dumper</translation>
+        <translation>Data Dumper</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="55"/>
         <location filename="dialognewplugin.h" line="45"/>
         <source>命令适配器</source>
-        <translation>commander</translation>
+        <translation>Commander</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="60"/>
         <source>仪器信息描述器</source>
-        <translation>descriptor</translation>
+        <translation>Descriptor</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="74"/>
         <source>插件名称：</source>
-        <translation>plugin name:</translation>
+        <translation>Plugin Name:</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="97"/>
         <source>插件路径：</source>
-        <translation>plugin full name:</translation>
+        <translation>Plugin Full Name:</translation>
     </message>
     <message>
         <location filename="dialognewplugin.ui" line="126"/>
@@ -529,12 +530,12 @@
     <message>
         <location filename="dialognewplugin.ui" line="152"/>
         <source>浏览</source>
-        <translation>brower</translation>
+        <translation>Brower</translation>
     </message>
     <message>
         <location filename="dialognewplugin.cpp" line="54"/>
         <source>选择插件文件</source>
-        <translation>select plugin</translation>
+        <translation>Select Plugin</translation>
     </message>
     <message>
         <location filename="dialognewplugin.cpp" line="55"/>
@@ -545,22 +546,22 @@
         <location filename="dialognewplugin.cpp" line="67"/>
         <location filename="dialognewplugin.cpp" line="71"/>
         <source>提示消息</source>
-        <translation>information</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="dialognewplugin.cpp" line="67"/>
         <source>插件名不能为空！</source>
-        <translation>plugin name can not be empty!</translation>
+        <translation>Plugin Name Can NoT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialognewplugin.cpp" line="71"/>
         <source>插件路径不能为空！</source>
-        <translation>plugin full name can not be empty!</translation>
+        <translation>Plugin Full Name Can NOT Be Empty!</translation>
     </message>
     <message>
         <location filename="dialognewplugin.h" line="47"/>
         <source>仪器描述器</source>
-        <translation>descriptor</translation>
+        <translation>Descriptor</translation>
     </message>
 </context>
 <context>
@@ -568,7 +569,7 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>主控系统</source>
-        <translation>main control system</translation>
+        <translation>Main Control System</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="31"/>
@@ -578,120 +579,154 @@
     <message>
         <location filename="mainwindow.ui" line="49"/>
         <source>项目</source>
-        <translation>project</translation>
+        <translation>Project</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="65"/>
         <source>工程</source>
-        <translation>project</translation>
+        <translation>Project</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="72"/>
+        <location filename="mainwindow.ui" line="80"/>
         <source>工具</source>
-        <translation>tools</translation>
+        <translation>Tools</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="76"/>
+        <location filename="mainwindow.ui" line="84"/>
         <source>插件管理</source>
-        <translation>plugin manage</translation>
+        <translation>Plugin Manage</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="106"/>
-        <location filename="mainwindow.cpp" line="362"/>
+        <location filename="mainwindow.ui" line="114"/>
+        <location filename="mainwindow.cpp" line="361"/>
         <source>打开工程</source>
-        <translation>open project</translation>
+        <translation>Open Project</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="111"/>
+        <location filename="mainwindow.ui" line="119"/>
         <source>新建工程</source>
-        <translation>new project</translation>
+        <translation>New Project</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="116"/>
+        <location filename="mainwindow.ui" line="124"/>
         <source>网络设置</source>
-        <translation>network set</translation>
+        <translation>Network Setting</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="161"/>
+        <location filename="mainwindow.ui" line="169"/>
         <source>简体中文</source>
-        <translation>simplified Chinese</translation>
+        <translation>Simplified Chinese</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="166"/>
+        <location filename="mainwindow.ui" line="174"/>
         <source>英文</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="83"/>
+        <location filename="mainwindow.ui" line="91"/>
         <source>语言设置</source>
-        <translation>language set</translation>
+        <translation>Language Setting</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="121"/>
+        <location filename="mainwindow.ui" line="129"/>
         <source>新建服务表</source>
-        <translation>new service</translation>
+        <translation>New Service</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="126"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>新建插件</source>
-        <translation>new plugin</translation>
+        <translation>New Plugin</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="139"/>
         <source>删除插件</source>
-        <translation>delete plugin</translation>
+        <translation>Delete Plugin</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="136"/>
+        <location filename="mainwindow.ui" line="144"/>
         <source>新建仪器</source>
-        <translation>new instrument</translation>
+        <translation>New Instrument</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="141"/>
+        <location filename="mainwindow.ui" line="149"/>
         <source>关闭工程</source>
-        <translation>close project</translation>
+        <translation>Close Project</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="146"/>
+        <location filename="mainwindow.ui" line="154"/>
         <source>删除工程</source>
-        <translation>delete project</translation>
+        <translation>Delete Project</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="151"/>
+        <location filename="mainwindow.ui" line="159"/>
         <source>删除服务</source>
-        <translation>delete service</translation>
+        <translation>Delete Service</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="156"/>
+        <location filename="mainwindow.ui" line="164"/>
         <source>删除仪器</source>
-        <translation>delete instrument</translation>
+        <translation>Delete Instrument</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="45"/>
-        <location filename="mainwindow.cpp" line="87"/>
-        <location filename="mainwindow.cpp" line="99"/>
-        <location filename="mainwindow.cpp" line="112"/>
-        <location filename="mainwindow.cpp" line="125"/>
-        <location filename="mainwindow.cpp" line="143"/>
-        <location filename="mainwindow.cpp" line="154"/>
-        <location filename="mainwindow.cpp" line="162"/>
+        <location filename="mainwindow.cpp" line="44"/>
+        <location filename="mainwindow.cpp" line="86"/>
+        <location filename="mainwindow.cpp" line="98"/>
+        <location filename="mainwindow.cpp" line="111"/>
+        <location filename="mainwindow.cpp" line="124"/>
+        <location filename="mainwindow.cpp" line="142"/>
+        <location filename="mainwindow.cpp" line="153"/>
+        <location filename="mainwindow.cpp" line="161"/>
         <source>错误信息</source>
-        <translation>error</translation>
+        <translation>Error</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="362"/>
         <source>工程文件(*.pp)</source>
-        <translation>project</translation>
+        <translation>project(*.pp)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="600"/>
+        <location filename="mainwindow.cpp" line="593"/>
+        <location filename="mainwindow.cpp" line="597"/>
+        <location filename="mainwindow.cpp" line="665"/>
+        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="674"/>
+        <source>提示消息</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="593"/>
+        <source>当前工程为空，请先创建工程！</source>
+        <translation>Current project is empty,create project first!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="597"/>
+        <source>当前选择项非工程类型，请选中服务所属工程！</source>
+        <translation>The current item is not a project,select a project!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>新建服务</source>
-        <translation>new service</translation>
+        <translation>New service</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="600"/>
+        <location filename="mainwindow.cpp" line="602"/>
         <source>服务名：</source>
-        <translation>service name:</translation>
+        <translation>Service name:</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="665"/>
+        <source>需先选中所属服务表！</source>
+        <translation>No service is selected!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="669"/>
+        <source>当前选中项非服务表类型，需选中所属服务表！</source>
+        <translation>No service is selected!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="674"/>
+        <source>当前服务表无所属工程！</source>
+        <translation>The current service table has no project!</translation>
     </message>
 </context>
 </TS>

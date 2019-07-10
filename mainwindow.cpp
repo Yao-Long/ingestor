@@ -15,7 +15,6 @@
 #include "dialognewplugin.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "acmeplugin.h"
 #include "dialognewinstrument.h"
 #include "dialogdelplugin.h"
 #include "dialognetworkset.h"
@@ -568,13 +567,6 @@ void MainWindow::on_actionDelService_triggered()
     parentItem->removeChild(item);
 
     QString projectName = parentItem->text(0);
-    //    int size = project.size();
-    //    for(int i = 0; i < size; i++){
-    //        if(project[i].getProjectName() == projectName){
-    //            project[i].delService(service);
-    //            break;
-    //        }
-    //    }
     QSqlQuery query;
     QString sql = "delete from serviceTab where name = ? and projectName = ?";
     query.prepare(sql);
@@ -596,28 +588,29 @@ void MainWindow::on_actionDelService_triggered()
 
 void MainWindow::on_actionNewService_triggered()
 {
+    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
+    if(item == nullptr){
+        QMessageBox::information(this, tr("提示消息"), tr("当前工程为空，请先创建工程！"));
+        return;
+    }
+    if(item->type() != projectLevel){
+        QMessageBox::information(this, tr("提示消息"), tr("当前选择项非工程类型，请选中服务所属工程！"));
+        return;
+    }
+
     bool ok;
     QString service = QInputDialog::getText(this, tr("新建服务"), tr("服务名："),
                                             QLineEdit::Normal, tr(""), &ok);
     if(!ok || service.isEmpty()){
         return;
     }
-    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
-    if(item == nullptr) return;
+
     QTreeWidgetItem *child = new QTreeWidgetItem(serviceLevel);
     child->setText(0, service);
     child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
     item->addChild(child);
 
     QString projectName = item->text(0);
-    //    QString fileName;
-    //    int size = project.size();
-    //    for(int i = 0; i < size; i++){
-    //        if(project[i].getProjectName() == projectName){
-    //            project[i].addService(service);
-    //            break;
-    //        }
-    //    }
 
     QSqlQuery query;
     QString sql = "insert into serviceTab values(?, ?)";
@@ -650,22 +643,12 @@ void MainWindow::on_actionDelInstrument_triggered()
     QString projectName = ppItem->text(0);
     parentItem->removeChild(item);
 
-    //    QString projectName = parentItem->text(0);
-    //    int size = ins.size();
-    //    for(int i = 0; i < size; i++){
-    //        if(project[i].getProjectName() == projectName){
-    //            project[i].delService(service);
-    //            break;
-    //        }
-    //    }
-
     QSqlQuery query;
-//    QString sql = "delete from instrumentTab where name = ? and serviceName = ? and projectName = ?";
-    QString sql = "delete from instrumentTab where name = ?";
+    QString sql = "delete from instrumentTab where name = ? and serviceName = ? and projectName = ?";
     query.prepare(sql);
     query.addBindValue(instrumentName);
-//    query.addBindValue(serviceName);
-//    query.addBindValue(projectName);
+    query.addBindValue(serviceName);
+    query.addBindValue(projectName);
     if(!query.exec()){
         qDebug()<<"delete instrumentTab item failed"<<query.lastError().text();
         return;
@@ -677,64 +660,38 @@ void MainWindow::on_actionDelInstrument_triggered()
 
 void MainWindow::on_actionNewInstrument_triggered()
 {
-    QSqlQuery query;
-    QString sql = "select * from pluginTab";
-    if(!query.exec(sql)){
-        qDebug()<<sql<<query.lastError().text();
-        return;
-    }
-    QList<AcmePlugin> plugins;
-    while(query.next()){
-        if(query.isValid()){
-            QString name = query.value(0).toString();
-            int type = query.value(1).toInt();
-            AcmePlugin p(name, type);
-            plugins<<p;
-        }
-    }
-
-
-    DialogNewInstrument *d = new DialogNewInstrument(plugins, this);
-    Qt::WindowFlags flags = d->windowFlags();
-    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
-    int ret = d->exec();
-    if (ret != QDialog::Accepted){
-        return;
-    }
-
-    //    QString curPath = QCoreApplication::applicationDirPath();
-    //    QString instrumentFile = curPath + "/instruments.dat";
-    //    QFile aFile(instrumentFile);
-    //    if (!(aFile.open(QIODevice::NewOnly | QIODevice::Append))){
-    //        delete d;
-    //        return;
-    //    }
-
-    QString instrumentName = d->getInstrumentName();
-    QString processorName  = d->getProcessorName();
-    QString dumperName     = d->getDumperName();
-    QString commander      = d->getCommanderName();
-    QString descriptor     = d->getDescriptorName();
-
-    //    QDataStream aStream(&aFile);
-    //    aStream.setVersion(QDataStream::Qt_5_9); //设置版本号，写入和读取的版本号要兼容
-    //    aStream<<instrumentName;
-    //    aStream<<d->getIngestorName();
-    //    aStream<<d->getProcessorName();
-    //    aStream<<d->getDumperName();
-    //    aStream<<d->getcommanderName();
-    //    aStream<<d->getDescriptorName();
-    //    aFile.close();
-
-    delete d; //删除对话框
     QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
     if(item == nullptr){
+        QMessageBox::information(this, tr("提示消息"), tr("需先选中所属服务表！"));
+        return;
+    }
+    if(item->type() != serviceLevel){
+        QMessageBox::information(this, tr("提示消息"), tr("当前选中项非服务表类型，需选中所属服务表！"));
         return;
     }
     QTreeWidgetItem *parentItem = item->parent();
     if(parentItem == nullptr){
+        QMessageBox::information(this, tr("提示消息"), tr("当前服务表无所属工程！"));
         return;
     }
+
+
+    DialogNewInstrument *d = new DialogNewInstrument(this);
+    Qt::WindowFlags flags = d->windowFlags();
+    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
+    int ret = d->exec();
+    if (ret != QDialog::Accepted){
+        delete d;
+        return;
+    }
+    QString instrumentName = d->getInstrumentName();
+//    QString processorName  = d->getProcessorName();
+//    QString dumperName     = d->getDumperName();
+//    QString commander      = d->getCommanderName();
+//    QString descriptor     = d->getDescriptorName();
+//    QString instrumentName =
+    delete d;
+
     QString serviceName = item->text(0);
     QString projectName = parentItem->text(0);
 
@@ -743,10 +700,8 @@ void MainWindow::on_actionNewInstrument_triggered()
     child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
     item->addChild(child);
 
-
-
-
-    sql = "insert into instrumentTab values(?, ?, ?)";
+    QSqlQuery query;
+    QString sql = "insert into instrumentTab values(?, ?, ?)";
     query.prepare(sql);
     query.addBindValue(instrumentName);
     query.addBindValue(serviceName);
@@ -777,56 +732,18 @@ void MainWindow::on_actionNetworkSet_triggered()
         networkData.clientFront = this->clientFront;
         networkData.serverAgent = this->serverAgent;
         networkData.clientDataCenter = this->clientDataCenter;
-//        networkData.a12Isconnected = this->a12Isconnected;
-//        networkData.frontIsConnected = this->frontIsConnected;
-//        networkData.localAgentIsStarted = this->localAgentIsStarted;
-//        networkData.dataCenterIsConnected = this->dataCenterIsConnected;
 
 
         DialogNetworkSet *d = new DialogNetworkSet(&networkData, this);
         Qt::WindowFlags flags = d->windowFlags();
         d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
         this->dialogNetworkSet = d;
-//        connect(clientFront, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//                d, SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
-//        connect(clientDataCenter, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//                d, SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
-//        connect(serverAgent, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//                d, SLOT(onLoacalAgentStateChange(QAbstractSocket::SocketState)));
-//        connect(serverAgent,SIGNAL(newConnection()),this,SLOT(onLocalAgentNewConnect()));
-
-//        connect(clientA12, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//                d, SLOT(onA12StateChange(QAbstractSocket::SocketState)));
         d->exec();
     }else {
+        this->dialogNetworkSet->initLanguage();
         this->dialogNetworkSet->exec();
     }
 }
-
-//QTcpSocket *MainWindow::getClientFront() const
-//{
-//    return clientFront;
-//}
-
-//bool MainWindow::getA12Isconnected() const
-//{
-//    return a12Isconnected;
-//}
-
-//bool MainWindow::getLocalAgentIsStarted() const
-//{
-//    return localAgentIsStarted;
-//}
-
-//bool MainWindow::getDataCenterIsConnected() const
-//{
-//    return dataCenterIsConnected;
-//}
-
-//bool MainWindow::getFrontIsConnected() const
-//{
-//    return frontIsConnected;
-//}
 
 
 void MainWindow::on_actionSetLanguageCN_triggered()

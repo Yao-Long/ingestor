@@ -26,7 +26,6 @@ CONFIG += c++11
 
 SOURCES += \
         acmeinstrument.cpp \
-        acmeplugin.cpp \
         dialogcreateproject.cpp \
         dialogdelplugin.cpp \
         dialognetworkset.cpp \
@@ -38,7 +37,6 @@ SOURCES += \
 
 HEADERS += \
         acmeinstrument.h \
-        acmeplugin.h \
         dialogcreateproject.h \
         dialogdelplugin.h \
         dialognetworkset.h \
