@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/ico"/>
     <qresource prefix="/">
-        <file>th.ico</file>
+        <file>Ingestor.ico</file>
     </qresource>
 </RCC>

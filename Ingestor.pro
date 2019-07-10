@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-07-03T19:52:57
+# Project created by QtCreator 2019-07-11T00:05:41
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = acme4
+TARGET = Ingestor
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        acmeinstrument.cpp \
         dialogcreateproject.cpp \
         dialogdelplugin.cpp \
         dialognetworkset.cpp \
@@ -36,7 +35,6 @@ SOURCES += \
         networkdata.cpp
 
 HEADERS += \
-        acmeinstrument.h \
         dialogcreateproject.h \
         dialogdelplugin.h \
         dialognetworkset.h \
@@ -63,13 +61,12 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += \
-    img.qrc
-
 DISTFILES +=
 
-
-RC_ICONS = th.ico
+RC_ICONS = Ingestor.ico
 
 
 TRANSLATIONS = gLanguage_cn.ts gLanguage_en.ts
+
+RESOURCES += \
+    img.qrc
