@@ -206,6 +206,7 @@ void MainWindow::initNetwork()
 //    dataCenterIsConnected = false;
 //    localAgentIsStarted = false;
 //    a12Isconnected = false;
+    dialogNetworkSet = nullptr;
 }
 
 
@@ -707,7 +708,7 @@ void MainWindow::on_actionNewInstrument_triggered()
     query.addBindValue(serviceName);
     query.addBindValue(projectName);
     if(!query.exec()){
-        qDebug()<<"insert instrumentTab item failed "<<query.lastError().text();
+        qDebug()<<sql<<query.lastError().text();
         return;
     }
 
@@ -732,7 +733,6 @@ void MainWindow::on_actionNetworkSet_triggered()
         networkData.clientFront = this->clientFront;
         networkData.serverAgent = this->serverAgent;
         networkData.clientDataCenter = this->clientDataCenter;
-
 
         DialogNetworkSet *d = new DialogNetworkSet(&networkData, this);
         Qt::WindowFlags flags = d->windowFlags();
