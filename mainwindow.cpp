@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QKeyEvent>
 
 #include "dialogcreateproject.h"
 #include "dialognewplugin.h"
@@ -33,6 +34,23 @@ MainWindow::MainWindow(QWidget *parent) :
     initdb();
     initNetwork();
     initLanguage();
+    //初始化为全屏
+    showFullScreen();
+    isFullScreen = true;
+}
+
+
+void MainWindow::keyPressEvent(QKeyEvent *event){
+    //按ESC快速切换全屏
+    if(event->key() == Qt::Key_Escape){
+        if(isFullScreen){
+            showNormal();
+            isFullScreen = false;
+        }else {
+            showFullScreen();
+            isFullScreen = true;
+        }
+    }
 }
 
 
