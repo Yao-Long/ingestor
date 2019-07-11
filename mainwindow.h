@@ -50,10 +50,6 @@ public:
     void initdb();
     void initNetwork();
     void initLanguage();
-
-    void keyPressEvent(QKeyEvent *event);
-
-
 //    bool getFrontIsConnected() const;
 
 //    bool getDataCenterIsConnected() const;
@@ -111,9 +107,6 @@ private slots:
     void on_actionSetLanguageEN_triggered();
 
 private:
-    bool isFullScreen;
-
-
     Ui::MainWindow *ui;
 //    QList<AcmeProject> project;
 //    QList<AcmePlugin> plugins;
