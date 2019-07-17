@@ -27,6 +27,7 @@ CONFIG += c++11
 SOURCES += \
         dialogcreateproject.cpp \
         dialogdelplugin.cpp \
+        dialoginstrumentmanager.cpp \
         dialognetworkset.cpp \
         dialognewinstrument.cpp \
         dialognewplugin.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 HEADERS += \
         dialogcreateproject.h \
         dialogdelplugin.h \
+        dialoginstrumentmanager.h \
         dialognetworkset.h \
         dialognewinstrument.h \
         dialognewplugin.h \
@@ -51,6 +53,7 @@ HEADERS += \
 FORMS += \
         dialogcreateproject.ui \
         dialogdelplugin.ui \
+        dialoginstrumentmanager.ui \
         dialognetworkset.ui \
         dialognewinstrument.ui \
         dialognewplugin.ui \

@@ -6,7 +6,7 @@
 #include "dialognetworkset.h"
 
 #include <QMainWindow>
-#include <QSqlDataBase>
+//#include <QSqlDataBase>
 #include <QSqlTableModel>
 #include <QTcpServer>
 #include <QTcpSocket>
@@ -26,12 +26,12 @@ enum projectTreeLevel
     instrumentLevel,
 };
 //项目树列编号
-enum projectTreeColumn
-{
-    projectColumn,
-    serviceColumn,
-    instrumentColumn,
-};
+//enum projectTreeColumn
+//{
+//    projectColumn,
+//    serviceColumn,
+//    instrumentColumn,
+//};
 
 enum languageType
 {
@@ -53,26 +53,13 @@ public:
 
     void keyPressEvent(QKeyEvent *event);
 
+    void addInstrumentToTree(QString projectName, QString serviceName, QString instrumentName);
 
-//    bool getFrontIsConnected() const;
 
-//    bool getDataCenterIsConnected() const;
+    QStringList getOpenedProjectNames();
+    QStringList getProjectServices(QString projectName);
 
-//    bool getLocalAgentIsStarted() const;
-
-//    bool getA12Isconnected() const;
-
-//    QTcpSocket *getClientFront() const;
-
-//signals:
-//    void signalFrontServerStateChange(QAbstractSocket::SocketState socketState);
-//    void signalDataCenterStateChange(QAbstractSocket::SocketState socketState);
-//    void signalLocalAgentStateChange(QAbstractSocket::SocketState socketState);
-//    void signalA12StateChange(QAbstractSocket::SocketState socketState);
-
-//public slots:
-//    void onFrontServerStatusChanged(bool);
-
+    bool initSuccess;
 private slots:
 
     void on_treeWidgetProject_customContextMenuRequested(const QPoint &pos);
@@ -109,6 +96,8 @@ private slots:
     void on_actionSetLanguageCN_triggered();
 
     void on_actionSetLanguageEN_triggered();
+
+    void on_actionInstrumentManage_triggered();
 
 private:
     bool isFullScreen;

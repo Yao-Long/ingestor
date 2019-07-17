@@ -44,22 +44,25 @@ void DialogDelPlugin::initPluginTableRow(int pluginRow, int plugintype, QString 
     //不可编辑
     item->setFlags(flag & ~Qt::ItemIsEditable);
     //文本对齐格式
-    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    item->setTextAlignment(Qt::AlignLeft);
     ui->tableWidget->setItem(pluginRow, colPluginName, item);
 
     item = new QTableWidgetItem(DialogNewPlugin::pluginTypeToString(plugintype), ctPluginType);
     item->setFlags(flag & ~Qt::ItemIsEditable);
-    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+//    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    item->setTextAlignment(Qt::AlignLeft);
     ui->tableWidget->setItem(pluginRow, colPluginType, item);
 
     item = new QTableWidgetItem(pluginFileName, ctPluginFileName);
     item->setFlags(flag & ~Qt::ItemIsEditable);
-    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+//    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    item->setTextAlignment(Qt::AlignLeft);
     ui->tableWidget->setItem(pluginRow, colPluginFileName, item);
 
     item = new QTableWidgetItem(tr("否"), ctIsDel);
     item->setFlags(flag & ~Qt::ItemIsEditable);
-    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+//    item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    item->setTextAlignment(Qt::AlignLeft);
 //    item->setCheckState(Qt::Unchecked);
     //设置背景颜色
     item->setBackgroundColor(Qt::green);
@@ -83,12 +86,12 @@ void DialogDelPlugin::initPluginTable()
        font.setBold(true);//设置为粗体
        font.setPointSize(12);//字体大小
 //       headerItem->setTextColor(Qt::black);//字体颜色
+       headerItem->setTextAlignment(Qt::AlignLeft);
        headerItem->setFont(font);//设置字体
+       QSize size(100, 40);
+       headerItem->setSizeHint(size);
        ui->tableWidget->setHorizontalHeaderItem(i, headerItem); //设置表头单元格的Item
     }
-
-    //设置成行选择
-    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     //初始化插件表数据
     QSqlQuery query;
@@ -103,10 +106,13 @@ void DialogDelPlugin::initPluginTable()
             int type = query.value(1).toInt();
             QString fileName = query.value(2).toString();
             int row = ui->tableWidget->rowCount();
+            qDebug()<<"row = "<<row;
             ui->tableWidget->insertRow(row);
             initPluginTableRow(row, type, name, fileName);
         }
     }
+    //设置成行选择
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     //自适应大小
 //    ui->tableWidget->resizeRowsToContents();
     ui->tableWidget->resizeColumnsToContents();

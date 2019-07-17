@@ -145,6 +145,7 @@
     <addaction name="actionDelService"/>
     <addaction name="separator"/>
     <addaction name="actionNewInstrument"/>
+    <addaction name="actionInstrumentManage"/>
     <addaction name="actionDelInstrument"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -244,6 +245,11 @@
   <action name="actionSetLanguageEN">
    <property name="text">
     <string>英文</string>
+   </property>
+  </action>
+  <action name="actionInstrumentManage">
+   <property name="text">
+    <string>仪器管理</string>
    </property>
   </action>
  </widget>

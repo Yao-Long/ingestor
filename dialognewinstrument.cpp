@@ -50,19 +50,19 @@ void DialogNewInstrument::initExistInstrument(){
             int type = query.value(1).toInt();
             switch(type){
             case pluginTypeIngestor:
-                ui->comboBoxIngestor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                ui->comboBoxIngestor->addItem(name);
                 break;
             case pluginTypeProcessor:
-                ui->comboBoxProcessor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                ui->comboBoxProcessor->addItem(name);
                 break;
             case pluginTypeDumper:
-                ui->comboBoxDumper->addItem(DialogNewPlugin::pluginTypeToString(type));
+                ui->comboBoxDumper->addItem(name);
                 break;
             case pluginTypeCommander:
-                ui->comboBoxCommander->addItem(DialogNewPlugin::pluginTypeToString(type));
+                ui->comboBoxCommander->addItem(name);
                 break;
             case pluginTypeDescriptor:
-                ui->comboBoxDescriptor->addItem(DialogNewPlugin::pluginTypeToString(type));
+                ui->comboBoxDescriptor->addItem(name);
                 break;
             default:
                 break;

@@ -19,6 +19,7 @@
 #include "dialognewinstrument.h"
 #include "dialogdelplugin.h"
 #include "dialognetworkset.h"
+#include "dialoginstrumentmanager.h"
 
 
 
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    initSuccess = true;
     initdb();
     initNetwork();
     initLanguage();
@@ -59,7 +61,8 @@ void MainWindow::initLanguage()
     QSqlQuery query;
     QString sql = "select * from languageTab";
     if(!query.exec(sql)){
-        QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//        QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+        this->initSuccess = false;
         return;
     }
     int type = -1;
@@ -86,12 +89,12 @@ void MainWindow::initdb()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
     QString curPath = QCoreApplication::applicationDirPath();
-    QString dbFileName = curPath + "/acme.db";
+    QString dbFileName = curPath + "/ingestor.db";
     db.setDatabaseName(dbFileName);
     if(!db.open()){
         qDebug()<<"open database failed";
-    }else {
-        qDebug()<<"open database success :"<<dbFileName;
+        this->initSuccess = false;
+        return;
     }
     QSqlQuery query;
     QString sql = "select * from projectTab";
@@ -101,7 +104,8 @@ void MainWindow::initdb()
                       "fileName text"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -113,7 +117,8 @@ void MainWindow::initdb()
                       "projectName text"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -126,7 +131,8 @@ void MainWindow::initdb()
                       "projectName text"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -139,7 +145,8 @@ void MainWindow::initdb()
                       "fileName text"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -157,7 +164,8 @@ void MainWindow::initdb()
                       "a12TeamName text"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -168,7 +176,8 @@ void MainWindow::initdb()
                       "language int"
                       ")";
         if(!query.exec(sql)){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
 
@@ -176,7 +185,8 @@ void MainWindow::initdb()
         query.prepare(sql);
         query.addBindValue(languageTypeChinese);
         if(!query.exec()){
-            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+//            QMessageBox::critical(this, tr("错误信息"), sql + query.lastError().text());
+            this->initSuccess = false;
             return;
         }
     }
@@ -187,43 +197,9 @@ void MainWindow::initdb()
 void MainWindow::initNetwork()
 {
     clientFront = new QTcpSocket(this);
-//    connect(clientFront, SIGNAL(connected()), this, SLOT(onConnectFrontServer()));
-//    connect(clientFront, SIGNAL(disconnected()), this, SLOT(onDisConnectFrontServer()));
-//    connect(clientFront,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
-//    connect(this,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this->dialogNetworkSet,SLOT(onFrontServerStateChange(QAbstractSocket::SocketState)));
-//    connect(clientFront,SIGNAL(readyRead()),
-//            this,SLOT(onFrontServerReadyRead()));
-
     clientDataCenter = new QTcpSocket(this);
-//    connect(clientDataCenter, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
-//    connect(clientDataCenter, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
-//    connect(clientDataCenter,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onDataCenterStateChange(QAbstractSocket::SocketState)));
-//    connect(clientDataCenter,SIGNAL(readyRead()),
-//            this,SLOT(onDataCenterReadyRead()));
-
     serverAgent = new QTcpServer(this);
-//    connect(serverAgent, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
-//    connect(serverAgent, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
-//    connect(serverAgent,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onServerAgentStateChange(QAbstractSocket::SocketState)));
-//    connect(serverAgent,SIGNAL(readyRead()),
-//            this,SLOT(onServerAgentReadyRead()));
-
     clientA12 = new QTcpSocket(this);
-//    connect(clientA12, SIGNAL(connected()), this, SLOT(onConnectDataCenter()));
-//    connect(clientA12, SIGNAL(disconnected()), this, SLOT(onDisConnectDataCenter()));
-//    connect(clientA12,SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-//            this,SLOT(onA12StateChange(QAbstractSocket::SocketState)));
-//    connect(clientA12,SIGNAL(readyRead()),
-//            this,SLOT(onA12ReadyRead()));
-
-//    frontIsConnected = false;
-//    dataCenterIsConnected = false;
-//    localAgentIsStarted = false;
-//    a12Isconnected = false;
     dialogNetworkSet = nullptr;
 }
 
@@ -274,8 +250,6 @@ void MainWindow::on_treeWidgetProject_customContextMenuRequested(const QPoint &p
         return;
     }
     int itemType = item->type();
-    qDebug()<<item;
-    qDebug()<<"item type = "<<itemType;
     switch (itemType) {
     case projectLevel:
         m->addAction(ui->actionCloseProject);
@@ -407,7 +381,7 @@ void MainWindow::on_actionOpenProject_triggered()
     aFile.close();
 
     QTreeWidgetItem* item = new QTreeWidgetItem(projectLevel);
-    item->setText(projectColumn, projectName);
+    item->setText(0, projectName);
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
     //添加顶层节点
     ui->treeWidgetProject->addTopLevelItem(item);
@@ -424,7 +398,7 @@ void MainWindow::on_actionOpenProject_triggered()
         if(query.isValid()){
             QString serviceName = query.value(0).toString();
             QTreeWidgetItem* serviceItem = new QTreeWidgetItem(serviceLevel);
-            serviceItem->setText(projectColumn, serviceName);
+            serviceItem->setText(0, serviceName);
             serviceItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
             item->addChild(serviceItem);
 
@@ -442,7 +416,7 @@ void MainWindow::on_actionOpenProject_triggered()
                 if(instrumentQuery.isValid()){
                     QString instrumenName = instrumentQuery.value(0).toString();
                     QTreeWidgetItem* instrumenItem = new QTreeWidgetItem(instrumentLevel);
-                    instrumenItem->setText(projectColumn, serviceName);
+                    instrumenItem->setText(0, instrumenName);
                     instrumenItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
                     serviceItem->addChild(instrumenItem);
                 }
@@ -504,32 +478,35 @@ void MainWindow::on_actionNewProject_triggered()
 }
 
 
-
+//关闭当前工程
 void MainWindow::on_actionCloseProject_triggered()
 {
     QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
-    if(item == nullptr) return;
-    QTreeWidgetItem *parentItem = item->parent();
-    if(parentItem == nullptr){
-        qDebug()<<"关闭工程";
-        ui->treeWidgetProject->removeItemWidget(item, 0);
-        delete item;
-    }else {
-        qDebug()<<"当前条目非工程";
-        //        parentItem->removeChild(item);
+    if(item == nullptr){
+        qDebug()<<"item == nullptr";
+        return;
     }
-
+    if(item->type() != projectLevel){
+        qDebug()<<"type != project";
+        return;
+    }
+    ui->treeWidgetProject->removeItemWidget(item, 0);
+    delete item;
 }
 
+//删除当前选中工程，同时删除所有工程的服务表和仪器
 void MainWindow::on_actionDelProject_triggered()
 {
     QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
-    if(item == nullptr) return;
-    qDebug()<<"删除工程";
-
+    if(item == nullptr){
+        qDebug()<<"item == nullptr";
+        return;
+    }
+    if(item->type() != projectLevel){
+        qDebug()<<"type != project";
+        return;
+    }
     QString projectName = item->text(0);
-    qDebug()<<"project name = "<<projectName;
-
     QSqlQuery query;
     QString sql = "select * from projectTab where name = ?";
     query.prepare(sql);
@@ -562,7 +539,6 @@ void MainWindow::on_actionDelProject_triggered()
         qDebug()<<sql<<query.lastError().text();
     }
 
-//    sql = "delete from instrumentTab where projectName = ?";
     sql = "delete from instrumentTab where projectName = ?";
     query.prepare(sql);
     query.addBindValue(projectName);
@@ -607,15 +583,15 @@ void MainWindow::on_actionDelService_triggered()
 
 void MainWindow::on_actionNewService_triggered()
 {
-    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
-    if(item == nullptr){
-        QMessageBox::information(this, tr("提示消息"), tr("当前工程为空，请先创建工程！"));
-        return;
-    }
-    if(item->type() != projectLevel){
-        QMessageBox::information(this, tr("提示消息"), tr("当前选择项非工程类型，请选中服务所属工程！"));
-        return;
-    }
+//    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
+//    if(item == nullptr){
+//        QMessageBox::information(this, tr("提示消息"), tr("当前工程为空，请先创建工程！"));
+//        return;
+//    }
+//    if(item->type() != projectLevel){
+//        QMessageBox::information(this, tr("提示消息"), tr("当前选择项非工程类型，请选中服务所属工程！"));
+//        return;
+//    }
 
     bool ok;
     QString service = QInputDialog::getText(this, tr("新建服务"), tr("服务名："),
@@ -624,18 +600,18 @@ void MainWindow::on_actionNewService_triggered()
         return;
     }
 
-    QTreeWidgetItem *child = new QTreeWidgetItem(serviceLevel);
-    child->setText(0, service);
-    child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
-    item->addChild(child);
+//    QTreeWidgetItem *child = new QTreeWidgetItem(serviceLevel);
+//    child->setText(0, service);
+//    child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
+//    item->addChild(child);
 
-    QString projectName = item->text(0);
+//    QString projectName = item->text(0);
 
     QSqlQuery query;
     QString sql = "insert into serviceTab values(?, ?)";
     query.prepare(sql);
     query.addBindValue(service);
-    query.addBindValue(projectName);
+    query.addBindValue(tr(""));
     if(!query.exec()){
         qDebug()<<"insert serviceTab failed";
         qDebug()<<query.lastError().text();
@@ -676,24 +652,53 @@ void MainWindow::on_actionDelInstrument_triggered()
 
 }
 
+void MainWindow::addInstrumentToTree(QString projectName, QString serviceName, QString instrumentName){
+    int projecCount = ui->treeWidgetProject->topLevelItemCount();
+    for(int i = 0; i < projecCount; i++){
+        QTreeWidgetItem *pItem = ui->treeWidgetProject->topLevelItem(i);
+        if(pItem->text(0) == projectName){
+            int serviceCount = pItem->childCount();
+            for(int j = 0; j < serviceCount; j++){
+                QTreeWidgetItem *sItem = pItem->child(j);
+                if(sItem->text(0) == serviceName){
+                    QTreeWidgetItem *instrument = new QTreeWidgetItem(instrumentLevel);
+                    instrument->setText(0, instrumentName);
+                    instrument->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
+                    sItem->addChild(instrument);
+
+                    //添加到数据库
+                    QSqlQuery query;
+                    QString sql = "insert into instrumentTab values(?, ?, ?)";
+                    query.prepare(sql);
+                    query.addBindValue(instrumentName);
+                    query.addBindValue(serviceName);
+                    query.addBindValue(projectName);
+                    if(!query.exec()){
+                        qDebug()<<sql<<query.lastError().text();
+                        return;
+                    }
+                    return;
+                }
+            }
+            break;
+        }
+    }
+}
+
 
 void MainWindow::on_actionNewInstrument_triggered()
 {
-    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
-    if(item == nullptr){
-        QMessageBox::information(this, tr("提示消息"), tr("需先选中所属服务表！"));
-        return;
-    }
-    if(item->type() != serviceLevel){
-        QMessageBox::information(this, tr("提示消息"), tr("当前选中项非服务表类型，需选中所属服务表！"));
-        return;
-    }
-    QTreeWidgetItem *parentItem = item->parent();
-    if(parentItem == nullptr){
-        QMessageBox::information(this, tr("提示消息"), tr("当前服务表无所属工程！"));
-        return;
-    }
-
+//    QTreeWidgetItem *item = ui->treeWidgetProject->currentItem();
+//    QTreeWidgetItem *parentItem;
+    QString serviceName;
+    QString projectName;
+//    if(item != nullptr && item->type() == serviceLevel){
+//        parentItem = item->parent();
+//        if(parentItem != nullptr){
+//            serviceName = item->text(0);
+//            projectName = parentItem->text(0);
+//        }
+//    }
 
     DialogNewInstrument *d = new DialogNewInstrument(this);
     Qt::WindowFlags flags = d->windowFlags();
@@ -708,17 +713,14 @@ void MainWindow::on_actionNewInstrument_triggered()
 //    QString dumperName     = d->getDumperName();
 //    QString commander      = d->getCommanderName();
 //    QString descriptor     = d->getDescriptorName();
-//    QString instrumentName =
     delete d;
 
-    QString serviceName = item->text(0);
-    QString projectName = parentItem->text(0);
-
-    QTreeWidgetItem *child = new QTreeWidgetItem(instrumentLevel);
-    child->setText(0, instrumentName);
-    child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
-    item->addChild(child);
-
+//    if(!serviceName.isEmpty()){
+//        QTreeWidgetItem *child = new QTreeWidgetItem(instrumentLevel);
+//        child->setText(0, instrumentName);
+//        child->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsAutoTristate);
+//        item->addChild(child);
+//    }
     QSqlQuery query;
     QString sql = "insert into instrumentTab values(?, ?, ?)";
     query.prepare(sql);
@@ -729,7 +731,6 @@ void MainWindow::on_actionNewInstrument_triggered()
         qDebug()<<sql<<query.lastError().text();
         return;
     }
-
 }
 
 
@@ -811,4 +812,46 @@ void MainWindow::on_actionSetLanguageEN_triggered()
         qDebug()<<sql<<query.lastError().text();
         return;
     }
+}
+
+
+QStringList MainWindow::getOpenedProjectNames(){
+    QStringList list;
+    int count = ui->treeWidgetProject->topLevelItemCount();
+    for (int i = 0; i < count; i++) {
+        QTreeWidgetItem *topItem = ui->treeWidgetProject->topLevelItem(i);
+        QString projectName = topItem->text(0);
+        list.append(projectName);
+    }
+    return list;
+}
+
+QStringList MainWindow::getProjectServices(QString projectName){
+    QStringList list;
+    int count = ui->treeWidgetProject->topLevelItemCount();
+    for (int i = 0; i < count; i++) {
+        QTreeWidgetItem *topItem = ui->treeWidgetProject->topLevelItem(i);
+        QString name = topItem->text(0);
+        if(name == projectName){
+            int serviceCount = topItem->childCount();
+            for (int j = 0; j < serviceCount; j++) {
+                QTreeWidgetItem *serviceItem = topItem->child(j);
+                if(serviceItem){
+                    QString serviceName = serviceItem->text(0);
+                    list.append(serviceName);
+                }
+            }
+            break;
+        }
+    }
+    return list;
+}
+
+void MainWindow::on_actionInstrumentManage_triggered()
+{
+    DialogInstrumentManager *d = new DialogInstrumentManager(this);
+    Qt::WindowFlags flags = d->windowFlags();
+    d->setWindowFlags(flags | Qt::MSWindowsFixedSizeDialogHint);
+    d->exec();
+    delete d;
 }
